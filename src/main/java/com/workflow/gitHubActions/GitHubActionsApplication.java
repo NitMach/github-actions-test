@@ -13,7 +13,28 @@ public class GitHubActionsApplication {
 	}
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(GitHubActionsApplication.class, args);
+
+		MyThreadClass t3 = new MyThreadClass();
+		t3.start();
+		t3.setPriority(10);
+
+		MyThreadRunnable t1 = new MyThreadRunnable();
+		Thread x = new Thread(t1);
+		System.out.println(x.getState() + "STATE");
+		MyThreadRunnable2 t2 = new MyThreadRunnable2();
+		Thread y = new Thread(t2);
+
+		x.start();
+		System.out.println(x.getState() + "STATE");
+
+//		x.setDaemon(true);
+		y.start();
+		System.out.println(x.getState() + "STATE");
+		//Signifies the main method does not wait for the other threads to finish it completes its entire exceution and
+		// wait
+		System.out.println("execution ended in main function");
 	}
 
 }
